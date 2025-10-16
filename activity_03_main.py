@@ -8,6 +8,9 @@ __credits__ = ""
 
 from billing_account.billing_account import BillingAccount
 from payee.payee import Payee
+from payment.payment import Payment
+from patterns.strategy.penalty_strategy import PenaltyStrategy
+from patterns.strategy.partial_payment_strategy import PartialPaymentStrategy
 
 def strategy():
     """Demonstrates the use of the classes defined in this activity."""
@@ -27,30 +30,53 @@ def strategy():
     # 1. Create a Payment object with a PenaltyStrategy payment 
     # strategy.
 
+    try:
+        penalty_payment = Payment(PenaltyStrategy())
+
 
     # 2. Use the Payment object's pay_bill method to pay the ELECTRICITY
     # bill with an amount that does not pay off the entire balance shown 
     # above - print the result of the pay_bill method.
-
     
+        print(penalty_payment.pay_bill(account, Payee.ELECTRICITY, 100.0))
+        print()
+
+    except ValueError as e:
+        print(e)
+        
     # 3. Create a Payment object with a PartialPaymentStrategy payment 
     # strategy.
     
+    try:
+        partial_payment = Payment(PartialPaymentStrategy())
 
     # 4. Use the Payment object's pay_bill method to pay the TELEPHONE 
     # bill with an amount that does not pay off the entire balance shown
     # above - print the result of the pay_bill method.
     
+        print(partial_payment.pay_bill(account, Payee.TELEPHONE, 50.0))
+        print()
+
+    except ValueError as e:
+        print(e)
 
     # 5. Using the Payment object created in step 3, make another 
     # payment for the TELEPHONE bill with an amount that pays off the 
     # remainder of the balance - print the result of the pay_bill 
     # method.
-   
 
+    try:
+        print(partial_payment.pay_bill(account, Payee.TELEPHONE, 100.0))
+        print()
+    except ValueError as e:
+        print(e)
+    
     # 6. Print the BillingAccount object to show the updated balances 
     # for each of the payees.
     
-
+    print("Updated Balances:")
+    for payee in Payee:
+        print(f"{payee.name}: ${account.get_balance(payee):.2f}")
+    
 if __name__ == "__main__":
     strategy()
