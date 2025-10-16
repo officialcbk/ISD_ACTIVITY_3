@@ -6,8 +6,10 @@ This activity will help to reinforce learning of the Module 3 concepts of:
 
 ## Author
 
-[Your name]
+Emmanuel Eze
 
 ## Additional Information
 
 [ Use this space to include additional information that may help in your learning. ]
+Patterns are ways to implement changes without duplicating code
+Strategy pattern is a behavioural pattern 
