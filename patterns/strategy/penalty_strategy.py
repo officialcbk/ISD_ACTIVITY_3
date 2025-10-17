@@ -9,17 +9,17 @@ from payee.payee import Payee
 from patterns.strategy.payment_strategy import PaymentStrategy
 
 class PenaltyStrategy(PaymentStrategy):
-    def process_payment(self, account:BillingAccount, payee:Payee, amount) -> str:
+    def process_payment(self, account:BillingAccount, payee:Payee, amount:float) -> str:
         """
         Applies a payment and adds a $10.00 penalty.
 
         Args:
-            account (BillingAccount): The billing account..
+            account (BillingAccount): The billing account.
             payee (Payee): The payee of the account.
             amount (float): The payment amount.
 
         Returns:
-            str: A confirmation message indicating the result of the payment.
+            str: A string message
         """
        
         account.deduct_balance(payee, amount)
@@ -27,13 +27,13 @@ class PenaltyStrategy(PaymentStrategy):
         balance = account.get_balance(payee)
 
         if balance <= 0:
-            return f"Processed payment of ${amount:.2f}. New balance: $0.00."
+            return f"Processed payment of ${amount:.2f}. New balance: ${balance:.2f}."
 
         account.add_balance(payee, 10.00)
         balance = account.get_balance(payee)
 
         return f"Insufficient payment. Added penalty fee of $10.00."\
-        "New balance: ${balance:.2f}."
+        f"New balance: ${balance:.2f}."
 
 
       

@@ -13,10 +13,10 @@ class Payment:
         Initializes a Payment strategy.
 
         Args:
-            strategy (PaymentStrategy): The strategy to be used for processing payments.
+            strategy(PaymentStrategy):The strategy used for processing payments.
 
         Raises:
-            ValueError: If the strategy provided is not a valid PaymentStrategy instance.
+            ValueError:If strategy is not a valid PaymentStrategy instance.
         """
 
         if isinstance(strategy, PaymentStrategy):
@@ -24,7 +24,7 @@ class Payment:
         else:
             raise ValueError("Invalid Strategy")
 
-    def pay_bill(self, account:BillingAccount, payee:Payee, amount: float) -> str:
+    def pay_bill(self, account:BillingAccount, payee:Payee, amount:float) -> str:
         """
         Implements the payment using the assigned strategy.
 

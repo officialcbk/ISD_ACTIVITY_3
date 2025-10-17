@@ -9,13 +9,17 @@ from payee.payee import Payee
 from patterns.strategy.payment_strategy import PaymentStrategy
 
 class PartialPaymentStrategy(PaymentStrategy):
-    def process_payment(self,  account:BillingAccount, payee:Payee, amount) -> str:
+    def process_payment(self,account:BillingAccount,payee:Payee,amount:float) -> str:
         """
-        account: Billing account
-        payee: Payee
-        amount: Amount to be paid
+        Process a payment of a partial payment.
 
-        return: str
+        Args:
+            account(BillingAccount): Billing account
+            payee(Payee): Payee of the account
+            amount(float): Amount to be paid
+
+        Return: 
+            str:Returns a string.
         """
 
         account.deduct_balance(payee, amount)

@@ -12,13 +12,17 @@ class PaymentStrategy(ABC):
     Class for payment strategy
     """
     @abstractmethod
-    def process_payment(self, account:BillingAccount, payee:Payee, amount) -> str:
+    def process_payment(self, account:BillingAccount, payee:Payee, amount:float) -> str:
         """
-        account: Billing account
-        payee: Payee
-        amount: Amount to be paid
+        Processes a payment according to the strategy.
 
-        return: str
+        Args:
+            account(BillingAccount):The type of account
+            payee(Payee): Payee of the account
+            amount(float): Amount to be paid
+
+        return: 
+           str:Returns a string.
         """
         
         pass
